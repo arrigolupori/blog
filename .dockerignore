@@ -1,7 +1,6 @@
 .vscode
 .gitignore
 .gcloudignore
-data.sqlite
 db-temp.go
 README.md
 Makefile

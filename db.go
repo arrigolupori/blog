@@ -6,7 +6,7 @@ import (
 
 func connect() (*sql.DB, error) {
 	var err error
-	db, err := sql.Open("sqlite3", "./data.sqlite")
+	db, err := sql.Open("sqlite3", "./data/db.sqlite")
 
 	if err != nil {
 		return nil, err

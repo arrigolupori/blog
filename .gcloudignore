@@ -1,7 +1,6 @@
 .vscode
 .gitignore
 .dockerignore
-data.sqlite
 db-temp.go
 README.md
 Makefile

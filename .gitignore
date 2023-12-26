@@ -1,4 +1,4 @@
-data.sqlite
+data
 db-temp.go
 blog
 .env
