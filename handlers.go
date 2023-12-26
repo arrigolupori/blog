@@ -1,19 +1,15 @@
 package main
 
-func dbCreateArticle(article *Article) error {
-	query, err := db.Prepare(`insert into articles(title, content) values (?, ?)`)
+import (
+	"html/template"
+	"net/http"
+)
 
-	if err != nil {
-		return err
-	}
+func GetAllArticles(w http.ResponseWriter, r *http.Request) {
+	articles, err := dbGetAllArticles()
+	catch(err)
 
-	defer query.Close()
-
-	_, err = query.Exec(article.Title, article.Content)
-
-	if err != nil {
-		return err
-	}
-
-	return nil
+	t, _ := template.ParseFiles("templates/base.html", "templates/index.html")
+	err = t.Execute(w, articles)
+	catch(err)
 }

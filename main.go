@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 
@@ -19,13 +18,6 @@ type Article struct {
 	ID      int           `json:"id"`
 	Title   string        `json:"title"`
 	Content template.HTML `json:"content"`
-}
-
-func catch(err error) {
-	if err != nil {
-		fmt.Println(err)
-		panic(err)
-	}
 }
 
 func init() {
@@ -46,6 +38,7 @@ func main() {
 	catch(err)
 
 	router.Use(ChangeMethod)
+	router.Get("/", GetAllArticles)
 
 	err = http.ListenAndServe(":8005", router)
 	catch(err)
