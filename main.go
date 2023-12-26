@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -60,10 +61,21 @@ func main() {
 		r.Post("/", CreatePost)
 	})
 
-	// router.Route("/{postID}", func(r chi.Router) {
-	// 	r.Use(PostCtx)
-	// })
+	router.Route("/{postID}", func(r chi.Router) {
+		r.Use(PostCtx)
+		r.Get("/", GetPost)
+		// r.Put("/", UpdatePost)
+		// r.Delete("/", DeletePost)
+		// r.Get("/edit", EditPost)
+	})
 
 	err = http.ListenAndServe(":8005", router)
 	catch(err)
+}
+
+func catch(err error) {
+	if err != nil {
+		fmt.Println(err)
+		panic(err)
+	}
 }

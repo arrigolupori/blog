@@ -1,11 +1,10 @@
 {{ define "title" }}All posts{{ end }}
 {{ define "scripts" }}{{ end }}
 {{define "body"}}
-{{ if eq (len .) 0 }}
-Nothing to see here
-{{ end }}
-{{ range . }}
-<a style="display: block;" href="/{{.ID}}">{{.Title}}</a>
-{{ end }}
-<a style="display: block;" href="/new">Add new post</a>
+    {{ if eq (len .) 0 }}
+        Nothing to see here
+    {{ end }}
+    {{ range . }}
+        <a style="display: block;" href="/{{.ID}}">{{.Title}}</a>
+    {{ end }}
 {{ end }}

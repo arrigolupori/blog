@@ -1,16 +1,12 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"net/http"
-)
 
-func catch(err error) {
-	if err != nil {
-		fmt.Println(err)
-		panic(err)
-	}
-}
+	"github.com/go-chi/chi/v5"
+)
 
 func ChangeMethod(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -26,5 +22,19 @@ func ChangeMethod(next http.Handler) http.Handler {
 			}
 		}
 		next.ServeHTTP(w, r)
+	})
+}
+
+func PostCtx(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		postID := chi.URLParam(r, "postID")
+		post, err := dbGetPost(postID)
+		if err != nil {
+			fmt.Println(err)
+			http.Error(w, http.StatusText(404), 404)
+			return
+		}
+		ctx := context.WithValue(r.Context(), "post", post)
+		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
