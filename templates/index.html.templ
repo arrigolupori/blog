@@ -5,11 +5,7 @@
 Nothing to see here
 {{ end }}
 {{ range . }}
-<div>
-  <a href="/articles/{{.ID}}">{{.Title}}</a>
-</div>
+<a style="display: block;" href="/articles/{{.ID}}">{{.Title}}</a>
 {{ end }}
-<p>
-  <a href="/articles">Create new article</a>
-</p>
+<a style="display: block;" href="/articles">Create new article</a>
 {{ end }}

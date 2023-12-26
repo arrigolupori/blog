@@ -1,12 +1,15 @@
 {
     "recommendations": [
-        "golang.go",
         "aaron-bond.better-comments",
         "waderyan.gitblame",
         "mhutchie.git-graph",
         "gruntfuggly.todo-tree",
         "esbenp.prettier-vscode",
         "qufiwefefwoyn.inline-sql-syntax",
-        "cweijan.vscode-database-client2"
+        "cweijan.vscode-database-client2",
+        "golang.go-nightly"
+    ],
+    "unwantedRecommendations": [
+        "golang.go"
     ]
 }
