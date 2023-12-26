@@ -6,7 +6,9 @@
         "gruntfuggly.todo-tree",
         "esbenp.prettier-vscode",
         "cweijan.vscode-database-client2",
-        "golang.go-nightly"
+        "golang.go-nightly",
+        "ms-azuretools.vscode-docker",
+        "googlecloudtools.cloudcode"
     ],
     "unwantedRecommendations": [
         "golang.go"
