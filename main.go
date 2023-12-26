@@ -28,62 +28,6 @@ func catch(err error) {
 	}
 }
 
-func ChangeMethod(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == http.MethodPost {
-			switch method := r.PostFormValue(`_method`); method {
-			case http.MethodPut:
-				fallthrough
-			case http.MethodPatch:
-				fallthrough
-			case http.MethodDelete:
-				r.Method = method
-			default:
-			}
-		}
-		next.ServeHTTP(w, r)
-	})
-}
-
-func connect() (*sql.DB, error) {
-	var err error
-	db, err := sql.Open("sqlite3", "./data.sqlite")
-
-	if err != nil {
-		return nil, err
-	}
-
-	sqlStmt := `create table if not exists articles (id integer not null primary key autoincrement, title text, content text);`
-
-	_, err = db.Exec(sqlStmt)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return db, nil
-}
-
-// func dbCreateArticle(db *sql.DB, article *Article) error {
-// 	query, err := db.Prepare(`insert into articles(title, content) values (?, ?)`)
-
-// 	if err != nil {
-// 		return err
-// 	}
-
-// 	defer query.Close()
-
-// 	_, err = query.Exec(article.Title, article.Content)
-
-// 	if err != nil {
-// 		return err
-// 	}
-
-// 	return nil
-// }
-
-
-
 func init() {
 	router = chi.NewRouter()
 	router.Use(middleware.Recoverer)
