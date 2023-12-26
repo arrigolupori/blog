@@ -1,7 +1,7 @@
 package main
 
-func dbCreateArticle(article *Article) error {
-	query, err := db.Prepare(`insert into articles(title, content) values (?, ?)`)
+func dbCreatePost(post *BlogPost) error {
+	query, err := db.Prepare(`insert into posts(title, content) values (?, ?)`)
 
 	if err != nil {
 		return err
@@ -9,7 +9,7 @@ func dbCreateArticle(article *Article) error {
 
 	defer query.Close()
 
-	_, err = query.Exec(article.Title, article.Content)
+	_, err = query.Exec(post.Title, post.Content)
 
 	if err != nil {
 		return err
@@ -18,8 +18,8 @@ func dbCreateArticle(article *Article) error {
 	return nil
 }
 
-func dbGetAllArticles() ([]*Article, error) {
-	query, err := db.Prepare(`select id, title, content from articles`)
+func dbGetAllPosts() ([]*BlogPost, error) {
+	query, err := db.Prepare(`select id, title, content from posts`)
 
 	if err != nil {
 		return nil, err
@@ -33,10 +33,10 @@ func dbGetAllArticles() ([]*Article, error) {
 		return nil, err
 	}
 
-	articles := make([]*Article, 0)
+	posts := make([]*BlogPost, 0)
 
 	for result.Next() {
-		data := new(Article)
+		data := new(BlogPost)
 		err := result.Scan(
 			&data.ID,
 			&data.Title,
@@ -47,8 +47,8 @@ func dbGetAllArticles() ([]*Article, error) {
 			return nil, err
 		}
 
-		articles = append(articles, data)
+		posts = append(posts, data)
 	}
 
-	return articles, nil
+	return posts, nil
 }

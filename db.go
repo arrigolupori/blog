@@ -12,7 +12,7 @@ func connect() (*sql.DB, error) {
 		return nil, err
 	}
 
-	sqlStmt := `create table if not exists articles (id integer not null primary key autoincrement, title text, content text);`
+	sqlStmt := `create table if not exists posts (id integer not null primary key autoincrement, title text, content text);`
 
 	_, err = db.Exec(sqlStmt)
 
