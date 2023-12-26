@@ -1,6 +1,6 @@
 .vscode
 .gitignore
-.dockerignore
+.gcloudignore
 data.sqlite
 db-temp.go
 README.md

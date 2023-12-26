@@ -27,8 +27,8 @@ func ChangeMethod(next http.Handler) http.Handler {
 
 func PostCtx(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		postID := chi.URLParam(r, "postID")
-		post, err := dbGetPost(postID)
+		postSlug := chi.URLParam(r, "postSlug")
+		post, err := dbGetPost(postSlug)
 		if err != nil {
 			fmt.Println(err)
 			http.Error(w, http.StatusText(404), 404)

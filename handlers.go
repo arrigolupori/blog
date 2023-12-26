@@ -9,6 +9,7 @@ import (
 
 func CreatePost(w http.ResponseWriter, r *http.Request) {
 	title := r.FormValue("title")
+	slug := r.FormValue("slug")
 	content := r.FormValue("content")
 	password := r.FormValue("password")
 
@@ -18,6 +19,7 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	post := &BlogPost{
+		Slug:    slug,
 		Title:   title,
 		Content: template.HTML(content),
 	}
