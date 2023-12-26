@@ -38,22 +38,22 @@ func GetAllPosts(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetPost(w http.ResponseWriter, r *http.Request) {
-	article := r.Context().Value("article").(*BlogPost)
+	post := r.Context().Value("post").(*BlogPost)
 	t, _ := template.ParseFiles("templates/base.go.html", "templates/post.go.html")
-	err := t.Execute(w, article)
+	err := t.Execute(w, post)
 	catch(err)
 }
 
 // func EditPost(w http.ResponseWriter, r *http.Request) {
-// 	article := r.Context().Value("article").(*BlogPost)
+// 	post := r.Context().Value("post").(*BlogPost)
 
 // 	t, _ := template.ParseFiles("templates/base.html", "templates/edit.html")
-// 	err := t.Execute(w, article)
+// 	err := t.Execute(w, post)
 // 	catch(err)
 // }
 
 // func UpdatePost(w http.ResponseWriter, r *http.Request) {
-// 	article := r.Context().Value("article").(*BlogPost)
+// 	post := r.Context().Value("post").(*BlogPost)
 
 // 	title := r.FormValue("title")
 // 	content := r.FormValue("content")
@@ -62,14 +62,14 @@ func GetPost(w http.ResponseWriter, r *http.Request) {
 // 		Content: template.HTML(content),
 // 	}
 // 	fmt.Println(newPost.Content)
-// 	err := dbUpdatePost(strconv.Itoa(article.ID), newPost)
+// 	err := dbUpdatePost(strconv.Itoa(post.ID), newPost)
 // 	catch(err)
-// 	http.Redirect(w, r, fmt.Sprintf("/articles/%d", article.ID), http.StatusFound)
+// 	http.Redirect(w, r, fmt.Sprintf("/%d", post.ID), http.StatusFound)
 // }
 
 // func DeletePost(w http.ResponseWriter, r *http.Request) {
-// 	article := r.Context().Value("article").(*BlogPost)
-// 	err := dbDeletePost(strconv.Itoa(article.ID))
+// 	post := r.Context().Value("post").(*BlogPost)
+// 	err := dbDeletePost(strconv.Itoa(post.ID))
 // 	catch(err)
 
 // 	http.Redirect(w, r, "/", http.StatusFound)
