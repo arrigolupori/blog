@@ -1,4 +1,4 @@
-{{ define "title" }}All articles{{ end }}
+{{ define "title" }}All posts{{ end }}
 {{ define "scripts" }}{{ end }}
 {{define "body"}}
 {{ if eq (len .) 0 }}
@@ -7,5 +7,5 @@ Nothing to see here
 {{ range . }}
 <a style="display: block;" href="/{{.ID}}">{{.Title}}</a>
 {{ end }}
-<a style="display: block;" href="/new">Create new article</a>
+<a style="display: block;" href="/new">Add new post</a>
 {{ end }}

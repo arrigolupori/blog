@@ -28,12 +28,6 @@ func NewPost(w http.ResponseWriter, r *http.Request) {
 	catch(err)
 }
 
-func WrongPassword(w http.ResponseWriter, r *http.Request) {
-	t, _ := template.ParseFiles("templates/base.go.html", "templates/wrong-password.go.html")
-	err := t.Execute(w, nil)
-	catch(err)
-}
-
 func init() {
 	router = chi.NewRouter()
 	router.Use(middleware.Recoverer)
@@ -64,7 +58,6 @@ func main() {
 	router.Route("/new", func(r chi.Router) {
 		r.Get("/", NewPost)
 		r.Post("/", CreatePost)
-		r.Get("/wrong-password", WrongPassword)
 	})
 
 	// router.Route("/{postID}", func(r chi.Router) {

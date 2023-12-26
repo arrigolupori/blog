@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"html/template"
 	"net/http"
 	"os"
@@ -12,7 +13,8 @@ func CreatePost(w http.ResponseWriter, r *http.Request) {
 	password := r.FormValue("password")
 
 	if password != os.Getenv("AL_BLOG_PASS") {
-		http.Redirect(w, r, "/", http.StatusFound)
+		err := errors.New("wrong password")
+		catch(err)
 	}
 
 	post := &BlogPost{
